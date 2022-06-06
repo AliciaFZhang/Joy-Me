@@ -1,0 +1,64 @@
+.App {
+  margin: 20px 80px;
+}
+
+/**** Nav ****/
+div #Nav {
+  display: flex;
+}
+
+.Nav-search {
+  float: left;
+  margin-top: 16px;
+  margin-left: 200px;
+  width: 250px;
+}
+
+.Nav-search input{
+  width: 200px;
+}
+
+.Nav-userName {
+  float: left;
+  margin-left: 200px;
+}
+
+.Nav-loginButton {
+  float: left;
+  margin-top: 8px;
+  margin-left: 15px;
+}
+
+.Nav-logoutButton {
+  float: left;
+  margin-top: 8px;
+  margin-left: 15px;
+}
+
+#userProfile {
+  width: 60px;
+  height: 60px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5%;
+  width: 200px;
+  margin: 20px;
+}
+
+#resta  {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+  padding: 2px 16px;
+}
