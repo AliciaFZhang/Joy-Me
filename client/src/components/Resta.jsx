@@ -1,4 +1,5 @@
 import React from 'react';
+import StarRatings from 'react-star-ratings';
 
 function Resta({ resta }) {
   return (
@@ -6,8 +7,10 @@ function Resta({ resta }) {
       <img id="resta" src={ resta['image_url'] }/>
       <div className="container">
         <a href={resta['url']}>{ resta['name'] }</a>
-        <div>{resta['price']}</div>
-        <div>Rating: {resta['rating']}</div>
+        <div className = 'price-star'>{resta['price']}
+          <StarRatings rating={resta['rating']} starRatedColor="black"
+            numberOfStarts={5} starDimension="15px" starSpacing="2px"name='rating'/>
+        </div>
         <div>Phone: {resta['display_phone']}</div>
         <div>Address: {resta['location']['address1']}, {resta['location']['city']}</div>
       </div>

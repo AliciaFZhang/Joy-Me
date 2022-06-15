@@ -7,7 +7,7 @@ function Nav () {
   const [search, setSearch] = useState();
   const [userLogin, setuserLogin] = useState(0);
   const [userInfo, setUserInfo] = useState({
-    name: 'Foodie',
+    name: 'Guest',
     userImg: userImgDefault
   });
   const changeSearch = (e) => {
@@ -24,7 +24,7 @@ function Nav () {
   };
   const handleSuccessLogout= (googleData) => {
     setuserLogin(0);
-    setUserInfo( {...userInfo, name: 'Anonymous user', userImg: userImgDefault
+    setUserInfo( {...userInfo, name: 'Guest', userImg: userImgDefault
   })
   };
 

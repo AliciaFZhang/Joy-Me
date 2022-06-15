@@ -1,12 +1,14 @@
 require('dotenv').config();
 const express = require('express');
+const compression = require('compression');
 const app = express();
-const PORT = 3000 || process.env.PORT;
+const PORT = 1337 || process.env.PORT;
 const axios = require('axios');
 const path = require('path');
 
 app.use(express.static('client/dist'));
 app.use(express.json());
+app.use(compression())
 
 app.post('/yelp', (req, res) => {
   const lat = req.body['lat'];
@@ -17,5 +19,6 @@ app.post('/yelp', (req, res) => {
   .then((data) => res.status(200).send(data.data))
   .catch((err) => res.status(500).send(err));
 })
+
 
 app.listen(PORT, () => { console.log(`Server listening on port: ${PORT}`);});

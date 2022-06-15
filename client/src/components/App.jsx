@@ -5,6 +5,7 @@ import axios from 'axios';
 
 function App () {
   const [resta, setResta] = useState([]);
+  const [view, setView] = useState('home');
 
   useEffect(()=>{
     axios.get('http://ip-api.com/json')
@@ -13,12 +14,24 @@ function App () {
     .catch((err) => console.log('err', err));
   }, []);
 
-  return (
-    <div className="App">
-      <Nav />
-      {resta.length > 0? <RestaList restaList={ resta }/> : <div>Loading</div>}
-    </div>
-  );
+  switch(view) {
+    case 'home':
+      return (
+        <div className="App">
+          <Nav />
+          <div><button onClick={(e) => setView('newdate')}>Add New Date</button></div>
+        </div>
+      )
+      break;
+    case 'newdate':
+      return (
+        <div className="App">
+          <Nav />
+          {resta.length > 0? <RestaList restaList={ resta }/> : <div>Loading</div>}
+        </div>
+      );
+      break;
+  }
 }
 
 export default App;

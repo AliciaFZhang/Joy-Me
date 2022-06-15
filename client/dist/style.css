@@ -46,6 +46,7 @@ div #Nav {
   border-radius: 5%;
   width: 200px;
   margin: 20px;
+  overflow: hidden;
 }
 
 #resta  {
