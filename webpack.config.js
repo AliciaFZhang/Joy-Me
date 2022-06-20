@@ -4,7 +4,7 @@ var DIST_DIR = path.join(__dirname, '/client/dist');
 
 module.exports = {
   mode: 'production',
-  entry: ['babel-polyfill', `${SRC_DIR}/index.js`],
+  entry: ['babel-polyfill', `${SRC_DIR}/index.jsx`],
   output: {
     filename: 'bundle.js',
     path: DIST_DIR
@@ -31,6 +31,17 @@ module.exports = {
             ]
           }
         }
+      },
+      {
+        test: /\.(css|sass|scss)$/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader'
+          }
+        ]
       },
       {
         test: /\.(png|jpe?g|gif)$/i,

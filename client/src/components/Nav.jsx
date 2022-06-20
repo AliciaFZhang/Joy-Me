@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { gapi } from 'gapi-script';
-import userImgDefault from '../asset/user_male.png';
-import { GoogleLogin, GoogleLogout } from 'react-google-login';
+
 
 function Nav () {
   const [search, setSearch] = useState();
   const [userLogin, setuserLogin] = useState(0);
   const [userInfo, setUserInfo] = useState({
-    name: 'Guest',
-    userImg: userImgDefault
+    username: '',
+    password: ''
   });
   const changeSearch = (e) => {
     setSearch(e.target.value);
@@ -16,7 +15,7 @@ function Nav () {
   const handleFailure = (result) => {
     alert(result);
   }
-  const handleSuccessLogin = (googleData) => {
+  const handleSuccessLogin = (Data) => {
     const userdata = googleData.profileObj;
     setUserInfo( {...userInfo, name: userdata['givenName'], userImg: userdata['imageUrl']
     })
@@ -28,16 +27,10 @@ function Nav () {
   })
   };
 
-  const clientId = "368480161571-fk17ijspvsegbgg2ha3lctit5didugh9.apps.googleusercontent.com";
+
 
   useEffect(() => {
-    const start = () => {
-      gapi.client.init({
-        clientId: clientId,
-        scope: "https://www.googleapis.com/auth/userinfo.email"
-      })
-    };
-    gapi.load('client:auth2', start);
+
 
   })
 
@@ -46,28 +39,22 @@ function Nav () {
       <div className="Nav-header">
         <h2>Joyme</h2>
       </div>
-      <div className="Nav-search">
+      {/* <div className="Nav-search">
         <input value={ search } onChange={ (e) => changeSearch(e)}></input>
         <button>🔍</button>
-      </div>
+      </div> */}
       <div className="Nav-userName"><h4>{userInfo['name']}</h4></div>
-      <div className="Nav-userProfile"><img id="userProfile" src={ userInfo['userImg']}></img></div>
+      <div className="Nav-userProfile"><img id="userProfile" src={ImgF}></img></div>
       { userLogin === 0 ? (<div className="Nav-loginButton">
-        <GoogleLogin
-          clientId = {clientId}
-          buttonText="Login"
-          onSuccess={ handleSuccessLogin}
-          onError={ handleFailure}
-          cookiePolicy={'single_host_origin'}
-          isSignedIn={true}
-        />
+        <form>
+          <div className=''>
+            <input name='username' value={userInfo.username} placeholder='USERNAME'></input>
+          </div>
+          <div>
+            <input name='Password' value='' placeholder='PASSWORD'></input>
+          </div>
+        </form>
       </div>) : (<div className="Nav-logoutButton">
-        <GoogleLogout
-          clientId = {clientId}
-          buttonText="Logout"
-          onLogoutSuccess={ handleSuccessLogout}
-          onError={ handleFailure}
-        />
       </div>) }
 
     </div>

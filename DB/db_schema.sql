@@ -11,8 +11,8 @@ CREATE TABLE users (
 
 -- Table: User-Like relationship --
 CREATE TABLE users_likes (
-  user_id Number,
-  resta_id Number
+  user_id Int,
+  resta_id Int
 );
 
 CREATE INDEX luser_id ON users_likes(user_id);
@@ -21,15 +21,15 @@ CREATE INDEX lresta_id ON users_likes(resta_id);
 -- Table: Dates --
 CREATE TABLE dates (
   date_id SERIAL PRIMARY KEY,
-  ini_user INT,
+  ini_user_id INT,
   resta_id INT,
   time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   ntotal INT,
   ncur INT,
-  full BOOLEAN DEFAULT FALSE
+  vacancy BOOLEAN DEFAULT FALSE
 );
 
-CREATE INDEX dini_id ON dates(ini_id);
+CREATE INDEX dini_id ON dates(ini_user_id);
 CREATE INDEX dresta_id ON dates(resta_id);
 
 -- Table: User-Date relationship --

@@ -1,13 +1,63 @@
 .App {
-  margin: 20px 80px;
+  margin-top: 150px;
+  position: relative;
+  font-family: 'Kalam', cursive;
 }
 
 /**** Nav ****/
-div #Nav {
-  display: flex;
+.Nav{
+  margin-left: 100px;
 }
 
-.Nav-search {
+.Nav-header {
+  float: left;
+  height: 400px;
+  width: 450px;
+  font-size: 100px;
+  color: #A8D0E6;
+  margin-left: 300px;
+}
+
+
+.Nav-loginForm {
+  float: left;
+  margin-top: 50px;
+  margin-left: 150px;
+  height: 300px;
+  width: 350px;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.Nav-input {
+  margin: 15px 45px;
+  height: 300px;
+}
+
+.Nav-inputBox input{
+  margin-top: 30px;
+  height: 30px;
+  border-radius: 5px;
+  width: 250px;
+}
+
+.Nav-inputBox button{
+  margin-top: 30px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: #A8D0E6;
+  width: 260px;
+  font-family: 'Kalam', cursive;
+}
+
+.Nav-inputBox{
+  margin-top: 20px;
+  height: 50px;
+  border-radius: 5px;
+  width: 260px;
+}
+
+/* .Nav-search {
   float: left;
   margin-top: 16px;
   margin-left: 200px;
@@ -20,7 +70,7 @@ div #Nav {
 
 .Nav-userName {
   float: left;
-  margin-left: 200px;
+  margin-left: 500px;
 }
 
 .Nav-loginButton {
@@ -33,25 +83,33 @@ div #Nav {
   float: left;
   margin-top: 8px;
   margin-left: 15px;
-}
-
-#userProfile {
-  width: 60px;
-  height: 60px;
-}
+} */
+div #Ads {
+  clear: both;
+  padding-top: 200px;
+  margin-left: 100px;
+  }
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-  border-radius: 5%;
-  width: 200px;
-  margin: 20px;
+  border: 1.5px solid #A8D0E6;
+  font-family:'Kalam', cursive;
+  border-radius: 5px;
+  width: 600px;
+  height: 400px;
+  margin: 20px 40px;
   overflow: hidden;
+  float: left;
+  display: flex;
 }
 
 #resta  {
+  margin: 40px 40px 0px 40px;
   width: 200px;
   height: 200px;
+  border: 1.5px solid #A8D0E6;
+  border-radius: 5px;
   object-fit: cover;
 }
 
@@ -60,6 +118,35 @@ div #Nav {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-.container {
-  padding: 2px 16px;
+.card-container {
+  float: left;
+  padding: 40px 16px;
+}
+/* .Nav-userProfile {
+  float: left;
+  height: 400px;
+  width: 200px;
+}
+
+.userProfile{
+  width: 150px;
+  height: 150px;
+  margin-top: 100px;
+} */
+.dashboard {
+  display: flex;
+  background-color: #A8D0E6;
+  height: 60px;
+  color: white;
+  font-size: 40px;
+  font-family:'Kalam', cursive;
+}
+
+.navtitle {
+  margin-left: 20px;
+}
+
+.navhead {
+  margin-left: 50px;
+  font-size: 20px;
 }
