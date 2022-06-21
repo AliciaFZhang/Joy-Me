@@ -1,33 +1,43 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
 import TextField from '@mui/material/TextField';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
-import DatePicker from "react-datepicker";
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+
+
+// import DatePicker from "react-datepicker";
 import axios from 'axios';
 import styled from 'styled-components';
 import Select from 'react-select';
+import { useNavigate } from 'react-router-dom';
+import { addDoc, collection } from 'firebase/firestore';
+import { db, auth } from '../firebase-config.jsx';
 
-function Resta({ resta, userInfo}) {
-  const [date, setDate] = useState(new Date());
+function Resta({isAuth, resta}) {
+  const [datetime, setDatetime] = useState(new Date());
   const [info, setInfo] = useState('');
   const [size, setSize] = useState(2);
-  const [time, setTime] = useState();
-  console.log('userInfo', userInfo);
+
   function handleSubmit(e) {
     e.preventDefault();
-    console.log('post',date);
-    axios.post('/date',{ date, time, info, size, userInfo, restaId: resta.id})
-     .then((data) => console.log('data', data));
+    const user = auth.currentUser;
+
+    axios.post('/date', { date: {datetime, info, size},
+        ini_user_id: user.uid,
+        user: {displayName: user.displayName, email: user.email, photoURL: user.photoURL},
+        resta_id: resta.id,
+        resta : {name: resta.name, image_url: resta.image_url, url: resta.url, price: resta.price, rating: resta.rating, display_phone: resta.display_phone, location: resta.location}})
+    .then((data) => console.log('data', data));
   }
-  const handleChange = (e) => {
-    e.persist();
-    setInfo(e.target.value);
-  }
-  const changeSize = (e) => {
-    setSize(e.value);
-  }
+
+  let navigate = useNavigate();
+  useEffect(()=> {
+    if (!isAuth) {
+      navigate("/");
+    }
+  })
+
   let sizeOptions = Array.from({length: 30}, (_, i) => {return ({'value': i+1, 'label': i+1})});
   return (
     <div className="card">
@@ -50,29 +60,20 @@ function Resta({ resta, userInfo}) {
             <Close href='#box'>&times;</Close>
             <Container>
               <form onSubmit = {handleSubmit} id = 'contact'>
-              <div>
-                <div>
-                <FormLabel>Date</FormLabel>
-                <DatePicker selected={date} onChange={(value) => setDate(value)} />
-                <FormLabel>Time</FormLabel>
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <TimePicker
-                  value={time}
-                  onChange={(time) => {
-                    setTime(time);
-                  }}
-                  renderInput={(params) => <TextField {...params} />}
-                />
-                 </LocalizationProvider>
-                </div>
-                <div>
+                  <DateTimePicker
+                    renderInput={(props) => <TextField {...props} />}
+                    label="DateTimePicker"
+                    value={datetime}
+                    onChange={(newValue) => {
+                      setDatetime(newValue);
+                    }}
+                  />
+                </LocalizationProvider>
               <FormLabel>Party Size</FormLabel>
-              <Select placeholder = 'SELECT TOTAL PARTY SIZE' placeholder={ "2" } onChange = {changeSize} options = {sizeOptions}/>
-              </div>
-
-              <TextArea onChange = {handleChange} value = {info} name = 'Feedback' placeholder = 'Special comments here'></TextArea>
+              <Select placeholder = 'SELECT TOTAL PARTY SIZE' placeholder={ "2" } onChange = {(e) => setSize(e.value)} options = {sizeOptions}/>
+              <TextArea onChange = {(e)=>setInfo(e.target.value)} value = {info} name = 'Feedback' placeholder = 'Special comments here'></TextArea>
               <Submit type = 'submit' value ='Submit'></Submit>
-              </div>
               </form>
             </Container>
           </Wrapper>
@@ -178,3 +179,19 @@ const AddDate = styled.div`
   width : 33%;
   text-align: center;
 `;
+
+
+
+// const postDate = collection(db, "dates");
+// const createDate = async (e) => {
+//   e.preventDefault();
+//   console.log('user', auth.currentUser);
+//   const user = auth.currentUser;
+//   console.log('test', 'date', datetime, info, size, user.uid, user.displayName, user.email, user.photoURL, resta.id);
+//   await addDoc(postDate, { date: {datetime, info, size},
+//     ini_user_id: user.uid,
+//     user: {display: user.displayName, email: user.email, photoURL: user.photoURL},
+//     resta_id: resta.id,
+//     resta : {name: resta.name, image_url: resta.image_url, url: resta.url, price: resta.price, rating: resta.rating, display_phone: resta.display_phone, location: resta.location}});
+//   navigate("/");
+// }

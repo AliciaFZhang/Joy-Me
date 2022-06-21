@@ -9,15 +9,6 @@ import Login from './routes/Login.jsx';
 import Dashboard from './routes/Dashboard.jsx';
 
 function App () {
-  const [loginInfo, setLoginInfo] = useState({
-    'username': '',
-    'password': ''
-  });
-  const [userInfo, setUserInfo] = useState({
-    'username': '',
-    'photo':'',
-    'uid': ''
-  });
   const [isAuth, setIsAuth] = useState(localStorage.getItem('isAuth'));
   const signUserOut = () => {
     signOut(auth)
@@ -29,25 +20,21 @@ function App () {
   }
   return (
     <Router>
-
       <div className ='dashboard'>
-          {!isAuth ? (<div className="headline"><Link className="navhead" to="/login">Login</Link></div>) :
-          (
-            <div className="headline">
-              <Link className="navhead" to="/viewdates">View dates</Link>
-              <Link className="navhead" to="/mydates">My dates</Link>
-              <Link className="navhead" to="/dashboard">Create a date</Link>
-              <button className="navhead" onClick={signUserOut}>Log Out</button>
-            </div>
-
-          )}
+        {!isAuth ? (<div className="headline"><Link className="navhead" to="/">Home</Link></div>) :
+        (
+          <div className="headline">
+            <Link className="navhead" to="/">Home</Link>
+            <Link className="navhead" to="/viewdates">View dates</Link>
+            <Link className="navhead" to="/mydates">My dates</Link>
+            <Link className="navhead" to="/dashboard">Create a date</Link>
+            <button className="navhead" onClick={signUserOut}>Log Out</button>
+          </div>
+        )}
       </div>
       <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/login" element={<Login setIsAuth={setIsAuth} setUserInfo={setUserInfo}/>}/>
-        <Route path="/dashboard" element={<Dashboard userInfo={userInfo} />}/>
-        {/* <Route path="/mydates" element=/> */}
-
+        <Route path="/" element={<Home isAuth={isAuth} setIsAuth ={setIsAuth}/>}/>
+        <Route path="/dashboard" element={<Dashboard isAuth={isAuth} />}/>
       </Routes>
     </Router>
   );

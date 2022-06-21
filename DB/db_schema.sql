@@ -21,10 +21,15 @@ CREATE INDEX lresta_id ON users_likes(resta_id);
 -- Table: Dates --
 CREATE TABLE dates (
   date_id SERIAL PRIMARY KEY,
-  ini_user_id INT,
-  id INT,
-  time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  ncur INT default 1,
+  ini_user_id VARCHAR(40),
+  displayName VARCHAR(40),
+  photoURL VARCHAR(140),
+  resta_id VARCHAR(40),
+  name VARCHAR(40),
+  datetime TIMESTAMP,
+  size INT DEFAULT 2,
+  cur INT DEFAULT 1,
+  info TEXT,
   vacancy BOOLEAN DEFAULT TRUE
 );
 

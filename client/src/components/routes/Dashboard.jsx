@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import RestaList from './RestaList.jsx';
+import { auth } from '../firebase-config.jsx';
 
-function Dashboard({userInfo}) {
+function Dashboard({isAuth}) {
 
   const [resta, setResta] = useState([]);
   const [search, setSearch] = useState({
@@ -38,7 +39,7 @@ function Dashboard({userInfo}) {
         <input type="text" onChange={handleChange} name="reastaloc" value={search.restaloc} placeholder={search.restaloc}/>
         <input type="submit" value="🔍"/>
       </form>
-    {resta.length > 0? <RestaList restaList={ resta } userInfo={userInfo}/> : <div>Loading</div>}
+    {resta.length > 0? <RestaList restaList={ resta } isAuth={ isAuth}/> : <div>Loading</div>}
     </div>
   );
 }
