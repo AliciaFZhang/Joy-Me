@@ -1,10 +1,15 @@
 var models = require('../models/date.js');
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
 
 module.exports = {
   addDate: (req, res) => {
-    console.log('req',req.body.date);
-    res.status(200).end();
+    const {date, time, size, info, userInfo, restaId} = req.body;
+    console.log('req', req.body);
+    models.addDate(date, time, size, info, userInfo.username, userInfo.photo,userInfo.uid, restaId ,(err, data) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.status(201).send(data);
+      }
+    })
   }
 }

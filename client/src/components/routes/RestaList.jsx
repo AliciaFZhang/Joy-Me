@@ -1,7 +1,7 @@
 import React from 'react';
 import Resta from './Resta.jsx';
 
-function RestaList ({restaList}) {
+function RestaList ({restaList, userInfo}) {
   console.log('restaList', restaList);
   return (
     <div className='RestaList'>

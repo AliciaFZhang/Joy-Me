@@ -9,15 +9,16 @@ import axios from 'axios';
 import styled from 'styled-components';
 import Select from 'react-select';
 
-function Resta({ resta }) {
+function Resta({ resta, userInfo}) {
   const [date, setDate] = useState(new Date());
   const [info, setInfo] = useState('');
   const [size, setSize] = useState(2);
   const [time, setTime] = useState();
+  console.log('userInfo', userInfo);
   function handleSubmit(e) {
     e.preventDefault();
     console.log('post',date);
-    axios.post('/date',{dateInfo: { date, info, size}, resta})
+    axios.post('/date',{ date, time, info, size, userInfo, restaId: resta.id})
      .then((data) => console.log('data', data));
   }
   const handleChange = (e) => {
@@ -50,24 +51,28 @@ function Resta({ resta }) {
             <Container>
               <form onSubmit = {handleSubmit} id = 'contact'>
               <div>
-              <FormLabel>Date</FormLabel>
-              <DatePicker selected={date} onChange={(value) => setDate(value)} />
-              <FormLabel>Time</FormLabel>
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <TimePicker
-                label="Basic example"
-                value={time}
-                onChange={(time) => {
-                  setTime(time);
-                }}
-                renderInput={(params) => <TextField {...params} />}
-              />
-            </LocalizationProvider>
+                <div>
+                <FormLabel>Date</FormLabel>
+                <DatePicker selected={date} onChange={(value) => setDate(value)} />
+                <FormLabel>Time</FormLabel>
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <TimePicker
+                  value={time}
+                  onChange={(time) => {
+                    setTime(time);
+                  }}
+                  renderInput={(params) => <TextField {...params} />}
+                />
+                 </LocalizationProvider>
+                </div>
+                <div>
               <FormLabel>Party Size</FormLabel>
               <Select placeholder = 'SELECT TOTAL PARTY SIZE' placeholder={ "2" } onChange = {changeSize} options = {sizeOptions}/>
               </div>
+
               <TextArea onChange = {handleChange} value = {info} name = 'Feedback' placeholder = 'Special comments here'></TextArea>
               <Submit type = 'submit' value ='Submit'></Submit>
+              </div>
               </form>
             </Container>
           </Wrapper>

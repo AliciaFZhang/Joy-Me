@@ -22,11 +22,10 @@ CREATE INDEX lresta_id ON users_likes(resta_id);
 CREATE TABLE dates (
   date_id SERIAL PRIMARY KEY,
   ini_user_id INT,
-  resta_id INT,
+  id INT,
   time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  ntotal INT,
-  ncur INT,
-  vacancy BOOLEAN DEFAULT FALSE
+  ncur INT default 1,
+  vacancy BOOLEAN DEFAULT TRUE
 );
 
 CREATE INDEX dini_id ON dates(ini_user_id);

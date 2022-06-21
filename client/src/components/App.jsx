@@ -32,12 +32,15 @@ function App () {
 
       <div className ='dashboard'>
           {!isAuth ? (<div className="headline"><Link className="navhead" to="/login">Login</Link></div>) :
-          (<div className="headline">
-            <Link className="navhead" to="/viewdates">View dates</Link>
-            <Link className="navhead" to="/mydates">My dates</Link>
-            <button className="navhead" onClick={signUserOut}>Log Out</button>
-          </div>)}
+          (
+            <div className="headline">
+              <Link className="navhead" to="/viewdates">View dates</Link>
+              <Link className="navhead" to="/mydates">My dates</Link>
+              <Link className="navhead" to="/dashboard">Create a date</Link>
+              <button className="navhead" onClick={signUserOut}>Log Out</button>
+            </div>
 
+          )}
       </div>
       <Routes>
         <Route path="/" element={<Home/>}/>

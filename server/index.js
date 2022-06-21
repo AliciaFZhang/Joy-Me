@@ -18,7 +18,15 @@ app.listen(PORT, () => { console.log(`Server listening on port: ${PORT}`);});
 app.post('/yelp', (req, res) => {
   const lat = req.body['lat'];
   const lon = req.body['lon'];
-  axios.get(`https://api.yelp.com/v3/businesses/search?term=delis&latitude=${lat}&longitude=${lon}`, {headers: {
+  axios.get(`https://api.yelp.com/v3/businesses/search?latitude=${lat}&longitude=${lon}`, {headers: {
+    Authorization: `Bearer ${process.env.token}`}
+ })
+  .then((data) => res.status(200).send(data.data))
+  .catch((err) => res.status(500).send(err));
+})
+app.post('/yelp/custom', (req, res) => {
+  const {restaname, restaloc} = req.body;
+  axios.get(`https://api.yelp.com/v3/businesses/search?term=${restaname}&location=${restaloc}`, {headers: {
     Authorization: `Bearer ${process.env.token}`}
  })
   .then((data) => res.status(200).send(data.data))

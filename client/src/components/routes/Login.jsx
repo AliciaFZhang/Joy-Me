@@ -26,8 +26,9 @@ function Login({setIsAuth, userInfo, setUserInfo}) {
         wrong = 'Try again'
       }
       console.log('data', response.data, 'wrong', wrong);
-    })
+    });
   }
+
   let navigate = useNavigate();
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider)
