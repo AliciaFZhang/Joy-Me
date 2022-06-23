@@ -7,6 +7,7 @@ import {signOut} from 'firebase/auth';
 import Home from './routes/Home.jsx';
 import Login from './routes/Login.jsx';
 import Dashboard from './routes/Dashboard.jsx';
+import Mydate from './routes/Mydate.jsx';
 
 function App () {
   const [isAuth, setIsAuth] = useState(localStorage.getItem('isAuth'));
@@ -35,6 +36,7 @@ function App () {
       <Routes>
         <Route path="/" element={<Home isAuth={isAuth} setIsAuth ={setIsAuth}/>}/>
         <Route path="/dashboard" element={<Dashboard isAuth={isAuth} />}/>
+        <Route path="/mydates" element={<Mydate isAuth ={isAuth}/>}/>
       </Routes>
     </Router>
   );

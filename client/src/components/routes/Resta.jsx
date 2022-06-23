@@ -61,17 +61,19 @@ function Resta({isAuth, resta}) {
             <Container>
               <form onSubmit = {handleSubmit} id = 'contact'>
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DateTimePicker
+                  <DateTimePicker className="datetime"
                     renderInput={(props) => <TextField {...props} />}
-                    label="DateTimePicker"
+                    label="Choose a Date and a Time"
                     value={datetime}
                     onChange={(newValue) => {
                       setDatetime(newValue);
                     }}
                   />
                 </LocalizationProvider>
+                <div>
               <FormLabel>Party Size</FormLabel>
               <Select placeholder = 'SELECT TOTAL PARTY SIZE' placeholder={ "2" } onChange = {(e) => setSize(e.value)} options = {sizeOptions}/>
+              </div>
               <TextArea onChange = {(e)=>setInfo(e.target.value)} value = {info} name = 'Feedback' placeholder = 'Special comments here'></TextArea>
               <Submit type = 'submit' value ='Submit'></Submit>
               </form>
@@ -89,6 +91,7 @@ export default Resta;
 
 const Overlay = styled.div`
   position: fixed;
+  z-index: 100000;
   top: 0;
   bottom: 0;
   left: 0;
@@ -123,7 +126,7 @@ const Wrapper = styled.div`
   padding: 20px;
   background: #fff;
   border-radius: 5px;
-  width: 30%;
+  width: 20%;
   position: relative;
   transition: all 2s ease-in-out;
   z-index: 100000;

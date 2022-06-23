@@ -1,8 +1,9 @@
 const routerDate = require('express').Router();
-const controller= require('../controllers/date');
+var models = require('../models/date.js');
 
 
 
-routerDate.post('/', controller.addDate);
+routerDate.post('/', models.addDate);
+routerDate.get('/', models.getMydate);
 
 module.exports = routerDate;

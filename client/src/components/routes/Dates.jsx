@@ -1,20 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import RestaList from './RestaList.jsx';
+import React from 'react';
+import StarRatings from 'react-star-ratings';
 
-function Dates() {
-
-  const [resta, setResta] = useState([]);
-  useEffect(()=>{
-    axios.get('http://ip-api.com/json')
-    .then((response) => axios.post('/yelp', response.data))
-    .then((res) => setResta(res.data.businesses))
-    .catch((err) => console.log('err', err));
-  }, []);
+function Dates({ dates }) {
 
   return (
-    <div id = 'addDate'>
-    {resta.length > 0? <RestaList restaList={ resta }/> : <div>Loading</div>}
+    <div className="card">
+      <div className="card-container">
+        <form>
+          <div>Date & Time: {dates.datetime}</div>
+          <div>Attendence: {dates.cur}/{dates.size}</div>
+        </form>
+      </div>
     </div>
   );
 }
