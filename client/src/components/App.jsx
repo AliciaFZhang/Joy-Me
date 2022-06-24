@@ -4,9 +4,10 @@ import {BrowserRouter as Router, Routes, Route, Outlet, Link} from 'react-router
 import {auth} from './firebase-config.jsx';
 import {signOut} from 'firebase/auth';
 
-import Home from './routes/Home.jsx';
+import Home from './routes/Home/Home.jsx';
 import Login from './routes/Login.jsx';
-import Dashboard from './routes/Dashboard.jsx';
+import Dashboard from './routes/Dashboard/Dashboard.jsx';
+import Viewdates from './routes/Viewdates/Viewdates.jsx';
 import Mydate from './routes/Mydate.jsx';
 
 function App () {
@@ -29,13 +30,14 @@ function App () {
             <Link className="navhead" to="/viewdates">View dates</Link>
             <Link className="navhead" to="/mydates">My dates</Link>
             <Link className="navhead" to="/dashboard">Create a date</Link>
-            <button className="navhead" onClick={signUserOut}>Log Out</button>
+            <a className="navhead" onClick={signUserOut}>Log Out</a>
           </div>
         )}
       </div>
       <Routes>
         <Route path="/" element={<Home isAuth={isAuth} setIsAuth ={setIsAuth}/>}/>
-        <Route path="/dashboard" element={<Dashboard isAuth={isAuth} />}/>
+        <Route path="/viewdates" element={<Viewdates isAuth={isAuth}/>}/>
+        <Route path="/dashboard" element={<Dashboard isAuth={isAuth}/>}/>
         <Route path="/mydates" element={<Mydate isAuth ={isAuth}/>}/>
       </Routes>
     </Router>

@@ -1,9 +1,11 @@
 const routerDate = require('express').Router();
-var models = require('../models/date.js');
+var controllers = require('../controllers/date.js');
 
+routerDate.post('/', controllers.addDate);
+routerDate.get('/', controllers.getMydate);
+routerDate.get('/alldates', controllers.getAlldates);
+routerDate.post('/join', controllers.join);
+routerDate.get('/join', controllers.getUserdates);
 
-
-routerDate.post('/', models.addDate);
-routerDate.get('/', models.getMydate);
 
 module.exports = routerDate;

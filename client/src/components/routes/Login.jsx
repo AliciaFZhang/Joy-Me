@@ -12,8 +12,10 @@ function Login({setIsAuth}) {
     .then((result) => {
       localStorage.setItem("isAuth", true);
       setIsAuth(true);
+      console.log('auth', auth);
+      axios.post('/user/info', {user: auth.currentUser})
+      .catch((err) => console.log(err));
       navigate("/dashboard");
-      console.log('here');
     })
   }
   return(

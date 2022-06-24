@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import RestaList from './RestaList.jsx';
-import { auth } from '../firebase-config.jsx';
+import RestaList from '../RestaList.jsx';
+import { auth } from '../../firebase-config.jsx';
+import './dashboard.css';
 
 function Dashboard({isAuth}) {
-
   const [resta, setResta] = useState([]);
   const [search, setSearch] = useState({
     'restaname':'',
@@ -32,12 +32,12 @@ function Dashboard({isAuth}) {
   }
   return (
     <div id = 'addDate'>
-      <form onSubmit={handleSearch}>
-        <label>Search</label>
-        <input type="text" onChange={handleChange} name="restaname" value={search.restaname} />
-        <label>Near</label>
-        <input type="text" onChange={handleChange} name="reastaloc" value={search.restaloc} placeholder={search.restaloc}/>
-        <input type="submit" value="🔍"/>
+      <form className="search" onSubmit={handleSearch}>
+        <label className="searchLabel">Search</label>
+        <input className="searchInput" type="text" onChange={handleChange} name="restaname" value={search.restaname} />
+        <label className="searchLabel">Near</label>
+        <input className="searchInput" type="text" onChange={handleChange} name="reastaloc" value={search.restaloc} placeholder={search.restaloc}/>
+        <input type="submit" className="searchSubmit" value="🔍"/>
       </form>
     {resta.length > 0? <RestaList restaList={ resta } isAuth={ isAuth}/> : <div>Loading</div>}
     </div>

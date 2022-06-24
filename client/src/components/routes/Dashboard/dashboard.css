@@ -1,0 +1,22 @@
+.search{
+  margin: 20px;
+}
+
+.searchLabel{
+  padding-top: 20px;
+  margin-left: 10px;
+}
+
+.searchInput{
+  margin-left: 10px;
+  width: 100px;
+  border: thin solid #A8D0E6;
+  box-shadow: 1px 1px 1px rgb(177, 231, 241);
+}
+
+.searchSubmit{
+  background: white;
+  border: thin solid #A8D0E6;
+  box-shadow: 1px 1px 1px rgb(177, 231, 241);
+}
+

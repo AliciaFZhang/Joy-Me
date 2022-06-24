@@ -4,9 +4,10 @@ CREATE DATABASE resta;
 \c resta;
 -- Table: Users --
 CREATE TABLE users (
-  user_id SERIAL PRIMARY KEY,
-  name VARCHAR(30),
-  email VARCHAR(40)
+  uid VARCHAR(30),
+  displayName VARCHAR(30),
+  email VARCHAR(40),
+  photoURL varchar(150)
 );
 
 -- Table: User-Like relationship --
